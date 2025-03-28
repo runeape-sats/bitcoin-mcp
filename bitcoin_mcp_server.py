@@ -56,6 +56,31 @@ mcp = FastMCP(
 )
 
 # Register Bitcoin Blockchain RPC tools
+@mcp.tool()
+async def get_bitfeed_3d_representation(ctx: Context, blockHeight: int, scale: float) -> str:
+    """
+    Get accurate 3D coordinates (x, y, z) and sizes (width, height, depth) of parcels from a BTC block based on Bitfeed representation. Units are in meters.
+
+    Do not modify the individuall numbers because it breaks the accuracy of the visual representation as a whole. For any sizing or scaling adjustments, use the "scale" parameter (default: 0.5 meter).
+    
+    Returns a JSON object with details about the specific Block including:
+    parcels: array of 3D representations of transactions in 3D sizes and coordinates, totalWidth: the final width of the visual representation (in meters), 
+    parcelColor: hex color code, 
+    blockNumber: the block height number,
+    totalParcels: total transactions
+    """
+    try:
+        # Import our Bitfeed implementation
+        from bitfeed import get_bitfeed_3d
+        
+        # Call the get_bitfeed_3d function with the block height parameter
+        result = await get_bitfeed_3d(blockHeight, scale)
+        
+        return json.dumps(result, indent=2)
+    except Exception as e:
+        logger.error(f"Error in get_bitfeed_3d_representation: {str(e)}")
+        logger.error(traceback.format_exc())
+        return f"Error getting Bitfeed 3D representation: {str(e)}"
 
 @mcp.tool()
 def get_blockchain_info(ctx: Context) -> str:
