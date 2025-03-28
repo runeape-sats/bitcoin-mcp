@@ -1,20 +1,18 @@
-# bitconi-mcp: Bitcoin MCP Server for Claude Desktop
+# bitcoin-mcp
 
-A streamlined Model Context Protocol (MCP) server implementation that interfaces with Bitcoin Core through `bitcoin-cli`. This server provides Claude Desktop with direct access to Bitcoin blockchain data and analytics **WITHOUT wallet functionality**.
+A streamlined Model Context Protocol (MCP) server implementation that interfaces with Bitcoin Core (full-node) through `bitcoin-cli`. This bitcoin-mcp server provides Claude Desktop (or other mcp clients) with direct access to Bitcoin blockchain data **WITHOUT wallet functionality**.
 
 ## Features
-LLM meets the most secure data ledger
+AI agent meets the most secure data ledger - Bitcoin.
 
 - Query real-time Bitcoin blockchain information (via `bitcoin-cli`, but WITHOUT any wallet calls)
-- Access block and transaction data
-- Get network status and mempool information
-- Perform blockchain analytics
+- Access mempool, blocks, and transaction data
 - Generate 3D representation based on BitFeed
 
 ## Prerequisites
 - Claude Desktop (or other mcp clients)
 - Python 3.10+
-- Bitcoin full-node (w. `bitcoin-cli`)
+- **Bitcoin full-node** (w. `bitcoin-cli`)
 - (Windows)
 
 ## Installation
@@ -24,7 +22,7 @@ LLM meets the most secure data ledger
 pip install fastmcp asyncio configparser
 ```
 
-2. Make sure Bitcoin Core is running and configure `.env` and add `BITCOIN_CLI_PATH` so that MCP server can find `bitcoin-cli`
+2. Make sure Bitcoin Core is up-to-date and running. Configure `.env` and add `BITCOIN_CLI_PATH` so that MCP server can find `bitcoin-cli`
 - Have this line `BITCOIN_CLI_PATH=C:\\Program Files\\Bitcoin\\daemon\\bitcoin-cli` in `.env` 
 
 3. Claude Desktop Configuration (standard setup for any mcp servers)
@@ -41,14 +39,14 @@ pip install fastmcp asyncio configparser
 }
 ```
 
-## test the server:
+## Test the server:
 You can test the python server to see if it loads your btc full node.
 ```bash
 python bitcoin_mcp_server.py
 ```
 
 ## Available Tools
-Mainly for Claude to gather Bitcoin blockchain info, so NO WALLET FUNCTIONS ARE INCLUDED.
+Mainly for mcp clients like Claude Desktop to utilize Bitcoin blockchain info, so NO WALLET FUNCTIONS ARE INCLUDED.
 
 ### Blockchain Information
 
@@ -109,7 +107,7 @@ Mainly for Claude to gather Bitcoin blockchain info, so NO WALLET FUNCTIONS ARE 
 
 ## Security Notes
 
-- This mcp server does not include wallet functionality in Bitcoin Core (u can add those urself)
+- This mcp server **does not** include wallet functionality in Bitcoin Core (u can add those urself)
 - By default, the server only binds to localhost (127.0.0.1)
 - Enables read-only access to blockchain data
 
