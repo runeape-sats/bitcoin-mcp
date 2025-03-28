@@ -1,6 +1,6 @@
 # bitcoin-mcp
 
-A streamlined Model Context Protocol (MCP) server implementation that interfaces with Bitcoin Core (full-node) through `bitcoin-cli`. This bitcoin-mcp server provides Claude Desktop (or other mcp clients) with direct access to Bitcoin blockchain data **WITHOUT wallet functionality**.
+The goal is to extend AI utilities with accurate Bitcoin blockchain data using [MCP](https://modelcontextprotocol.io/). bitcoin-mcp is a streamlined Model Context Protocol (MCP) server implementation that interfaces with Bitcoin Core (full-node) through `bitcoin-cli`. This bitcoin-mcp server provides Claude Desktop (or other mcp clients) with READ access to Bitcoin blockchain data **WITHOUT wallet functionality**.
 
 ![screenshot-btc-mcp0](https://github.com/user-attachments/assets/a748869c-3d3f-4271-b871-1c3e8b1c56e6)
 
@@ -10,7 +10,7 @@ AI agent meets the most secure data ledger - Bitcoin.
 
 - Query real-time Bitcoin blockchain information (via `bitcoin-cli`, but WITHOUT any wallet calls)
 - Access mempool, blocks, and transaction data
-- Generate 3D representation based on BitFeed
+- Generate 3D visualization based on BitFeed representation (i.e., those beautiful rectangles on [mempool.space](https://mempool.space/))
 
 ## Prerequisites
 - Claude Desktop (or other mcp clients)
