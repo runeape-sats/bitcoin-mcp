@@ -10,7 +10,10 @@ AI agent meets the most secure data ledger - Bitcoin.
 
 - Query real-time Bitcoin blockchain information (via `bitcoin-cli`, but WITHOUT any wallet calls)
 - Access mempool, blocks, and transaction data
-- Generate 3D visualization based on BitFeed representation (i.e., those beautiful rectangles on [mempool.space](https://mempool.space/))
+- Generate custom 3D visualization of BTC blocks based on TX output values and BitFeed representation (i.e., those beautiful rectangles on [mempool.space](https://mempool.space/))
+
+  ![image](https://github.com/user-attachments/assets/789afe06-6130-4566-81bf-e7e544f8c1c7)
+
 
 ## Prerequisites
 - Claude Desktop (or other mcp clients)
