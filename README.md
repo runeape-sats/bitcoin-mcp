@@ -1,21 +1,21 @@
-# Bitcoin MCP Server for Claude Desktop
+# bitconi-mcp: Bitcoin MCP Server for Claude Desktop
 
 A streamlined Model Context Protocol (MCP) server implementation that interfaces with Bitcoin Core through `bitcoin-cli`. This server provides Claude Desktop with direct access to Bitcoin blockchain data and analytics **WITHOUT wallet functionality**.
 
 ## Features
 LLM meets the most secure data ledger
 
-- Query real-time Bitcoin blockchain information
+- Query real-time Bitcoin blockchain information (via `bitcoin-cli`, but WITHOUT any wallet calls)
 - Access block and transaction data
 - Get network status and mempool information
-- Perform advanced blockchain analytics
-- Auto-detects bitcoin-cli in PATH
-- Minimal configuration required
+- Perform blockchain analytics
+- Generate 3D representation based on BitFeed
 
 ## Prerequisites
-- Claude Desktop
+- Claude Desktop (or other mcp clients)
 - Python 3.10+
-- Bitcoin full-node for `bitcoin-cli` access
+- Bitcoin full-node (w. `bitcoin-cli`)
+- (Windows)
 
 ## Installation
 
@@ -24,15 +24,17 @@ LLM meets the most secure data ledger
 pip install fastmcp asyncio configparser
 ```
 
-2. Make sure Bitcoin Core is running and configure `bitcoin-cli` so that MCP server can find it
+2. Make sure Bitcoin Core is running and configure `.env` and add `BITCOIN_CLI_PATH` so that MCP server can find `bitcoin-cli`
+- Have this line `BITCOIN_CLI_PATH=C:\\Program Files\\Bitcoin\\daemon\\bitcoin-cli` in `.env` 
 
 3. Claude Desktop Configuration (standard setup for any mcp servers)
+- update `path\\to\\` to your local `bitcoin-mcp` folder
 ```
 {
   "mcpServers": {
     "bitcoin-mcp": {
-      "command": "uv",
-      "args": ["--directory", "path\\to\\bitcoin-mcp", "run", "bitcoin_mcp_server.py"],
+      "command": "python",
+      "args": ["path\\to\\bitcoin-mcp\\bitcoin_mcp_server.py"],
       "env": {}
     }
   }
@@ -40,7 +42,7 @@ pip install fastmcp asyncio configparser
 ```
 
 ## test the server:
-You can test the python server to see if everything loads
+You can test the python server to see if it loads your btc full node.
 ```bash
 python bitcoin_mcp_server.py
 ```
@@ -63,6 +65,7 @@ Mainly for Claude to gather Bitcoin blockchain info, so NO WALLET FUNCTIONS ARE 
 | `get_blockchain_status` | Get comprehensive blockchain status |
 | `get_detailed_block_info` | Get detailed block information |
 | `search_blocks` | Search for blocks meeting criteria |
+| `get_bitfeed_3d_representation` | Get 3D representation of a BTC block based on TX data |
 
 ### Transaction Information
 
@@ -102,6 +105,7 @@ Mainly for Claude to gather Bitcoin blockchain info, so NO WALLET FUNCTIONS ARE 
 - `bitcoin_transactions.py`: Transaction analysis utilities
 - `bitcoin_utils.py`: Blockchain utilities
 - `bitcoin_analytics.py`: Advanced blockchain analytics
+- `bitfeed.py`: 3D representations of BTC blocks
 
 ## Security Notes
 
@@ -134,6 +138,13 @@ Estimate hashrate:
 ```
 What is the current estimated hashrate of the Bitcoin network?
 ```
+
+Generate 3D representation (note that context length may not fit all TXs, try blocks where TX number < 20 ):
+
+```
+Build a react threejs viewer for btc block 111111
+```
+
 
 ## License
 
