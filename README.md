@@ -19,16 +19,17 @@ AI agent meets the most secure data ledger - Bitcoin.
 - (Windows)
 
 ## Installation
-
-1. Install dependencies:
+1. Clone the repo to your up-to-date btc full node machine (required for bitcoin-mcp to work)
+   
+2. Install dependencies:
 ```bash
 pip install fastmcp asyncio configparser
 ```
 
-2. Make sure Bitcoin Core is up-to-date and running. Configure `.env` and add `BITCOIN_CLI_PATH` so that MCP server can find `bitcoin-cli`
+3. Make sure Bitcoin Core is up-to-date and running. Configure `.env` and add `BITCOIN_CLI_PATH` so that MCP server can find `bitcoin-cli`
 - Have this line `BITCOIN_CLI_PATH=C:\\Program Files\\Bitcoin\\daemon\\bitcoin-cli` in `.env` 
 
-3. Claude Desktop Configuration (standard setup for any mcp servers)
+4. Claude Desktop Configuration (standard setup for any mcp servers)
 - update `path\\to\\` to your local `bitcoin-mcp` folder
 ```
 {
